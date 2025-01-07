@@ -1,0 +1,40 @@
+name: Validate Checklist
+
+on:
+  pull_request:
+    types: [opened, edited]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Validate checklist
+      id: validate
+      run: |
+        CHECKLIST_ITEMS=(
+          "- [x] I have read the \\[contributing guidelines\\](CONTRIBUTING.md)."
+          "- [x] I have added tests that prove my fix is effective or that my feature works."
+          "- [x] I have added necessary documentation (if appropriate)."
+        )
+        
+        for ITEM in "${CHECKLIST_ITEMS[@]}"; do
+          if ! curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+            -H "Accept: application/vnd.github.v3+json" \
+            "${{ github.event.pull_request.url }}" | jq -r '.body' | grep -q "$ITEM"; then
+            echo "Checklist item not marked: $ITEM"
+            exit 1
+          fi
+        done
+
+    - name: Comment on PR
+      if: failure()
+      run: |
+        COMMENT="Please make sure all specific checklist items are marked."
+        curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+          -H "Accept: application/vnd.github.v3+json" \
+          -d "{\"body\": \"$COMMENT\"}" \
+          "${{ github.event.pull_request.comments_url }}"
