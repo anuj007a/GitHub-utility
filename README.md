@@ -1,2 +1,2 @@
 # GitHub-utility
-This repo is for Github related solution.  
+This repo is for GitHub related solution.  
