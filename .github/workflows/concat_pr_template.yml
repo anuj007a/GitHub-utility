@@ -27,6 +27,6 @@ jobs:
         git config --global user.email 'github-actions[bot]@users.noreply.github.com'
         git add .github/PULL_REQUEST_TEMPLATE.md
         git commit -m 'Update PR template'
-        git push
+        git push origin HEAD:pr-template-test
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

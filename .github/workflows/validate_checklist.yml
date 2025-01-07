@@ -15,18 +15,25 @@ jobs:
     - name: Validate checklist
       id: validate
       run: |
-        CHECKLIST=$(curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
-          -H "Accept: application/vnd.github.v3+json" \
-          "${{ github.event.pull_request.url }}" | jq -r '.body' | grep -E '\- \[ \]')
-        if [ -n "$CHECKLIST" ]; then
-          echo "Checklist items are not all marked."
-          exit 1
-        fi
+        CHECKLIST_ITEMS=(
+          "- [x] I have read the \\[contributing guidelines\\](CONTRIBUTING.md)."
+          "- [x] I have added tests that prove my fix is effective or that my feature works."
+          "- [x] I have added necessary documentation (if appropriate)."
+        )
+        
+        for ITEM in "${CHECKLIST_ITEMS[@]}"; do
+          if ! curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+            -H "Accept: application/vnd.github.v3+json" \
+            "${{ github.event.pull_request.url }}" | jq -r '.body' | grep -q "$ITEM"; then
+            echo "Checklist item not marked: $ITEM"
+            exit 1
+          fi
+        done
 
     - name: Comment on PR
       if: failure()
       run: |
-        COMMENT="Please make sure all checklist items are marked."
+        COMMENT="Please make sure all specific checklist items are marked."
         curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
           -H "Accept: application/vnd.github.v3+json" \
           -d "{\"body\": \"$COMMENT\"}" \
