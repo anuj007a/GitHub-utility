@@ -10,7 +10,7 @@ body:
   - type: input
     id: pr_title
     attributes:
-      label: "🔖 PR Title"
+      label: "🔖 PR Title Test"
       description: "Provide a short and clear PR title."
       placeholder: "Enter PR title here"
 
