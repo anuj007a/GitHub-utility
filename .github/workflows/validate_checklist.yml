@@ -30,7 +30,7 @@ jobs:
           fi
         done
 
-    - name: Comment on PRs
+    - name: Comment on PR
       if: failure()
       run: |
         COMMENT="Please make sure all specific checklist items are marked."

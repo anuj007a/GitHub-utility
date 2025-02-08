@@ -1,15 +1,13 @@
-## Describe your changes
+## Checklist
 
-## Issue ticket number and link
+- [ ] I have read the [contributing guidelines](CONTRIBUTING.md).
+- [ ] I have added tests that prove my fix is effective or that my feature works.
+- [ ] I have added necessary documentation (if appropriate).## Description
 
-## Checklist before requesting a review
-- [ ] Checklist
-- [ ] I have performed a self-review of my code
-- [ ] If it is a core feature, I have added thorough tests.
-- [ ] Do we need to implement analytics?
-- [ ] Will this be part of a product update? If yes, please write one phrase about this update.
-- [ ] Have you updated the documentation?
-
-## Checklist before merging
-- [ ] Have you tested the changes?
-- [ ] Have you updated the README?
+Please describe your pull request:1. **What is the purpose of this pull request?**
+   - [ ] Bug fix
+   - [ ] New feature
+   - [ ] Other (please describe):2. **What changes did you make?**
+   -3. **What issues does this pull request address?**
+   -4. **Any additional comments or information?**
+   -
