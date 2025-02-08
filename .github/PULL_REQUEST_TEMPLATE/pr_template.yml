@@ -1,0 +1,6 @@
+name: "Test PR Template"
+body:
+  - type: textarea
+    id: test_area
+    attributes:
+      label: "Test Area"
