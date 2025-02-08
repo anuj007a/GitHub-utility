@@ -1,23 +1,21 @@
 name: Pull Request
-description: "Please fill out this form when creating a PR."
+description: "Fill out this form when creating a PR."
 
 title: "[PR]: "  # Pre-fills PR title
-labels: ["pending review"]  # Auto-adds label to PR
-assignees:
-  - your-github-username  # Replace with your GitHub username
+labels: ["pending review"]  # Auto-adds a label
 
 body:
   - type: input
     id: pr_title
     attributes:
-      label: "🔖 PR Title Test"
+      label: "🔖 PR Title"
       description: "Provide a short and clear PR title."
       placeholder: "Enter PR title here"
 
   - type: textarea
     id: summary
     attributes:
-      label: "📌Summary"
+      label: "📌 Summary"
       description: "Provide a concise summary of the changes made in this PR."
       placeholder: "Enter summary here"
 
@@ -43,40 +41,13 @@ body:
     id: impact
     attributes:
       label: "⚠️ Impact Analysis"
-      description: "Mention any breaking changes or concerns."
+      description: "Mention any breaking changes."
       options:
         - label: "Affects API"
         - label: "Affects Database"
         - label: "Affects UI"
-        - label: "Affects Services"
         - label: "Requires Migration"
         - label: "No Breaking Changes"
-
-  - type: input
-    id: jira_ticket
-    attributes:
-      label: "🎯 Related JIRA/Ticket"
-      description: "Add links to related tickets or issues."
-      placeholder: "Enter JIRA ticket number"
-
-  - type: checkboxes
-    id: code_review
-    attributes:
-      label: "🔍 Code Review Checklist"
-      description: "Ensure best practices are followed."
-      options:
-        - label: "Code follows best practices"
-        - label: "No hardcoded values"
-        - label: "Proper logging and error handling"
-        - label: "Security considerations addressed"
-        - label: "Performance impact considered"
-
-  - type: textarea
-    id: deployment
-    attributes:
-      label: "🚀 Deployment Plan"
-      description: "Specify how the changes will be deployed and monitored post-release."
-      placeholder: "Enter deployment steps here"
 
   - type: textarea
     id: additional_notes
